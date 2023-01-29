@@ -27,8 +27,9 @@ public class Main {
         System.out.println(conscript);
 
         List<String> employee = persons.stream()
-                .filter(x -> (x.getAge() >= 18 && x.getAge() <= 60 && x.getSex() == Sex.WOMAN && x.getEducation() == Education.HIGHER) ||
-                        x.getAge() >= 18 && x.getAge() <= 65 && x.getSex() == Sex.MAN && x.getEducation() == Education.HIGHER)
+                .filter(x -> x.getEducation() == Education.HIGHER)
+                .filter(x -> x.getAge() >= 18)
+                .filter(x -> x.getAge()<= 60 && x.getSex() == Sex.WOMAN || x.getAge() <= 65 && x.getSex() == Sex.MAN)
                 .sorted(Comparator.comparing(Person::getFamily))
                 .map(Person::getFamily)
                 .collect(Collectors.toList());
